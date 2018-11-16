@@ -14,8 +14,8 @@
               <input type="password" placeholder="请输入密码" v-model="userpwd">
             </div>
         </li>
-        <li class="login-fgt">
-          <p @click="tofgtpwd">忘记密码？</p>
+        <li class="login-fgt clearfix">
+          <div><input type="checkbox" v-model="checkState" @click="remberPwd"><span>记住密码</span></div><p @click="tofgtpwd">忘记密码？</p>
         </li>
         <li class="login-btn">
           <input type="button" value="登录" @click="login">
@@ -37,7 +37,17 @@ export default {
     return {
       tittle: '详情',
       username: '',
-      userpwd: ''
+      userpwd: '',
+      checkState: true
+    }
+  },
+  mounted () {
+    this.username = JSON.parse(window.decodeURIComponent(window.atob(window.localStorage.getItem('user')))).phoneno
+    if (window.localStorage.getItem('ischeck') === 'false') {
+      this.checkState = false
+      this.userpwd = ''
+    } else {
+      this.userpwd = JSON.parse(window.decodeURIComponent(window.atob(window.localStorage.getItem('user')))).password
     }
   },
   methods: {
@@ -55,8 +65,9 @@ export default {
                 userApi.login(loginParams).then((res) => {
                   if (res.code === 200) {
                     Toast('登录成功')
-                    console.log(res)
-                    localStorage.setItem('token', res.data.token)
+                    window.localStorage.setItem('token', res.data.token)
+                    window.localStorage.setItem('user', window.btoa(unescape(window.encodeURIComponent(JSON.stringify(loginParams)))))
+                    // window.localStorage.setItem('user', JSON.stringify(loginParams))
                     this.$router.togo('/home')
                   } else {
                     Toast(res.msg)
@@ -83,6 +94,10 @@ export default {
       } else {
         Toast('手机号不能为空')
       }
+    },
+    remberPwd () {
+      this.checkState = !this.checkState
+      window.localStorage.setItem('ischeck', this.checkState)
     },
     toRegesiter () {
       this.$router.togo('/regesiter')
@@ -133,9 +148,26 @@ ul {
   }
   .login-fgt {
     p {
-      font-size: 16px;
+      font-size: 14px;
       color: #666666;
       text-indent: 10px;
+      float: right;
+      margin-right: 10px;
+    }
+    div {
+      float: left;
+      font-size: 14px;
+      margin-left: 10px;
+      color: #666666;
+      input {
+        float: left;
+        height: 18px;
+        width: 18px;
+      }
+      span {
+        float: left;
+        margin-left: 5px;
+      }
     }
   }
   .login-btn {

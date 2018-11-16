@@ -98,9 +98,14 @@ export default {
         this.cashKind = item.paytype
         this.cashName = '银行卡'
         if (item.useraccount) {
+          console.log(item)
           this.useraccount = item.useraccount
           this.username = item.username
           this.bankname = item.bankname
+        } else {
+          this.useraccount = ''
+          this.username = ''
+          this.bankname = ''
         }
       }
     },

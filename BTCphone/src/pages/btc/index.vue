@@ -40,7 +40,7 @@
                <li>{{item.bullbear === 1 ? "买涨" : "买跌"}}</li>
                <li>{{item.enablenum}}</li>
                <li>{{[item.totalbuyamount/item.enablenum,2] | fixDecimal(item.totalbuyamount/item.enablenum,2)}}</li>
-               <li>{{item.lossMoney ? item.lossMoney : 0}}</li>
+               <li :class="item.lossMoney>0 ?'buy-red':'buy-green'">{{item.lossMoney ? item.lossMoney : 0}}</li>
                <div>
                  <mt-button @click="buyShade(1,item.enablenum,item.logid)">卖出平仓</mt-button>
                  <mt-button @click="buyShade(2,item.winrate,item.lossrate)">查看止损止盈</mt-button>
@@ -783,6 +783,12 @@ export default {
 .positionScroll {
   height: 4.8rem;
   overflow: scroll;
+  .buy-red {
+    color: red;
+  }
+  .buy-green {
+    color: #01cc00;
+  }
 }
 .index-buy {
   height: 60px;

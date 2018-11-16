@@ -90,18 +90,12 @@ export default {
       let params2 = {}
       homeApi.getBanner(params).then((res) => {
         this.bannerImg = res.data.list
-      }).catch(() => {
-
       })
       homeApi.getMarketIndex(params1).then((res) => {
         this.indexData = res.data.list
-      }).catch(() => {
-
       })
       homeApi.getBaseRoom(params2).then((res) => {
         this.modelData = res.data.list
-      }).catch(() => {
-
       })
     },
     enterRoom(status, roomtype, logid) {
@@ -212,16 +206,15 @@ export default {
     font-size: 14px;
   }
   div {
-    display: flex;
     padding: 5% 5%;
     ul {
-      flex: 1;
+      width: 31%;
       float: left;
       background: #fff;
       border-radius: 5px;
-      margin-right: 10px;
+      margin-right: 3%;
+      margin-top: 10px;
       img {
-        // float: left;
         width: 80%;
         margin: 10px 0;
       }
@@ -230,12 +223,11 @@ export default {
         height: 24px;
       }
       :first-child {
-        // margin: 0 auto;
         vertical-align: middle;
         text-align: center;
       }
     }
-    :last-child {
+    :nth-child(3) {
       margin-right: 0;
     }
   }

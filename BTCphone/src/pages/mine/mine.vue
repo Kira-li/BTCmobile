@@ -18,7 +18,8 @@
         <li class="clearfix" @click="toMessage(2)"><p><i class="icon iconfont icon-qunfengjiaoyijilu"></i><span>操盘记录</span></p><div><i class="icon iconfont icon-arrow-right"></i></div></li>
         <li class="clearfix" @click="toMessage(3)"><p><i class="icon iconfont icon-mingxi"></i><span>资金明细</span></p><div><i class="icon iconfont icon-arrow-right"></i></div></li>
         <li class="clearfix" @click="toMessage(4)"><p><i class="icon iconfont icon-bangzhuzhongxin"></i><span class="user-help">帮助中心与教程</span></p><div><i class="icon iconfont icon-arrow-right"></i></div></li>
-        <li class="clearfix" @click="toMessage(5)"><p><i class="icon iconfont icon-shezhi"></i><span>设置中心</span></p><div><i class="icon iconfont icon-arrow-right"></i></div></li>
+        <li class="clearfix" @click="toMessage(5)"><p><i class="icon iconfont icon-jiaoyijilu"></i><span class="user-help">新手攻略</span></p><div><i class="icon iconfont icon-arrow-right"></i></div></li>
+        <li class="clearfix" @click="toMessage(6)"><p><i class="icon iconfont icon-shezhi"></i><span>设置中心</span></p><div><i class="icon iconfont icon-arrow-right"></i></div></li>
     </ul>
     <div class="user-exit"><mt-button @click="exit">退出登录</mt-button></div>
   </div>
@@ -85,6 +86,9 @@ export default {
           this.$router.togo('/mine/help')
           break
         case 5:
+          this.$router.togo('/mine/newHand')
+          break
+        case 6:
           this.$router.togo('/mine/setting')
           break
       }
@@ -149,7 +153,7 @@ export default {
             width: 4rem;
             height: 0.6rem;
             border-radius: 10px;
-            background: #3a96d7;
+            background: #248ad2;
             border: 0;
             color: #fff;
         }
@@ -221,6 +225,13 @@ export default {
         position: absolute;
         top: 0px;
         left: -8px;
+    }
+    .icon-jiaoyijilu {
+      color: #f3a51d;
+      font-size: 28px;
+      position: absolute;
+      top: 0px;
+      left: -6px;
     }
     .user-help {
         position: absolute;

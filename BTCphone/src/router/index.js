@@ -156,6 +156,16 @@ export default new Router({
       component: (resolve) => require(['@/pages/mine/message'], resolve)
     },
     {
+      path: '/mine/mesCont',
+      name: 'messageCont',
+      component: (resolve) => require(['@/pages/mine/mesCont'], resolve)
+    },
+    {
+      path: '/mine/newHand',
+      name: 'newHand',
+      component: (resolve) => require(['@/pages/mine/newHand'], resolve)
+    },
+    {
       path: '/mine/record',
       name: 'record',
       component: (resolve) => require(['@/pages/mine/record'], resolve)

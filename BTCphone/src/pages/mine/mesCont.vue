@@ -1,49 +1,45 @@
 <template>
   <div>
     <common-header :tittle="tittle" :showback="true"></common-header>
-    <div class="page-content">
-      <!-- <mt-button @click="todetail">user</mt-button> -->
-      <div v-html="html"></div>
-    </div>
+    <div class="page-content" v-html="cont"></div>
   </div>
 </template>
 
 <script>
 import {mapMutations, mapGetters, mapState} from 'vuex'
+import { getSysMsg, getArticle } from '../../api/user-api.js'
 import commonHeader from 'common/common-header'
-import axios from 'axios'
 export default {
   data () {
     return {
-      tittle: '帮助中心与教程',
+      tittle: '',
       num: 0,
-      html: '',
-      url: 'http://static.tzyj91.com/help.html'
+      cont: ''
     }
   },
   created() {},
   mounted () {
-    this.load(this.url)
+    this.getTitle()
   },
   methods: {
     ...mapMutations({
       setNum: 'SET_NUM'
     }),
-    todetail() {
+    todetail () {
       this.$router.togo('/Home/Detail')
     },
-    load (url) {
-      if (url && url.length > 0) {
-        let param = {
-          accept: 'text/html, text/plain',
-          header: 'Access-Control-Allow-Origin'
-        }
-        axios.get(url, param).then((response) => {
-          this.html = response.data
-        }).catch(() => {
-          this.loading = false
-          this.html = ''
-          window.location.reload()
+    getTitle () {
+      this.tittle = this.$route.query.title
+      let params = {
+        id: this.$route.query.id.toString()
+      }
+      if (this.$route.query.type === 1) {
+        getSysMsg(params).then((res) => {
+          this.cont = res.data.sysMsg.content
+        })
+      } else {
+        getArticle(params).then((res) => {
+          this.cont = res.data.article.content
         })
       }
     }
@@ -66,7 +62,10 @@ export default {
 <style scoped lang="less">
 @import "~styles/index.less";
 @import "~styles/variable.less";
-.page-content {
-  background: #EDEFF2;
+.hello{
+  h1{
+    color: red;
+    .fs(38);
+  }
 }
 </style>

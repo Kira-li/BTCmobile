@@ -35,3 +35,19 @@ export function getUserAccount(params) {
 export function getUserInfo(params) {
   return fetch('user/getUserInfo', params)
 } // 获取用户信息
+
+export function sysMsg(params) {
+  return fetch('sysMsg', params)
+} // 获取消息标题
+
+export function getSysMsg(params) {
+  return fetch('sysMsg/getSysMsg', params)
+} // 获取消息内容
+
+export function article(params) {
+  return fetch('article', params)
+} // 获取新手攻略标题
+
+export function getArticle(params) {
+  return fetch('article/getArticle', params)
+} // 获取新手攻略内容

@@ -187,14 +187,8 @@ export default {
           // this.$router.push({path: '/regesiter', query: {mobile: this.username}})
           let params = {roomid: this.roomid}
           stockApi.transferOutMoney(params).then((res) => {
-            if (res.code !== 200) {
-              console.log(111)
-              MessageBox({
-                title: '提示',
-                message: res.msg,
-                showCancelButton: true
-              })
-            }
+            Toast('结算成功')
+            this.$router.togo('/home')
           })
         }
       })
